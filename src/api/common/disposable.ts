@@ -1,27 +1,28 @@
+import { EventEmitter } from "api/common/eventEmitter";
 
 export interface IDisposable {
   dispose: () => void;
 }
 
-export class EventDisposable {
+export class EventDisposable<T> extends EventEmitter<T> {
 
-  static delete(disposable: EventDisposable, key: string) {
+  static delete(disposable: EventDisposable<any>, key: string) {
     disposable.getDisposables().delete(key);
   }
 
-  static clear(disposeable: EventDisposable) {
+  static clear(disposeable: EventDisposable<any>) {
     disposeable.getDisposables().clear();
   }
   
-  static dispose(disposeable: EventDisposable, key: string) {
-    disposeable.getDisposables().get(key)?.dispose();
+  static dispose(disposeable: EventDisposable<any>, id: any) {
+    disposeable.getDisposables().get(id)?.dispose();
   }
 
-  private _disposes = new Map<string | symbol, IDisposable>();
+  private _disposes = new Map<symbol | any, IDisposable>();
 
   private _currentDisposableId = "";
 
-  setDisposableId(value: string) {
+  setDisposableId(value: any) {
     this._currentDisposableId = value;
   }
 
@@ -48,8 +49,12 @@ export class EventDisposable {
       let id = Symbol();
       this._disposes.set(id, disposable);
     }
-    
+
     this.clearDisposableId();
+  }
+
+  setDisposable() {
+    
   }
 
   dispose() {
