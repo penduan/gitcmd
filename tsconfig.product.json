@@ -1,0 +1,37 @@
+{
+  "compilerOptions": {
+    "strictNullChecks": true,
+    "noImplicitAny": true,
+    "module": "CommonJS",
+    "target": "ESNext",
+    "allowJs": true,
+    "jsx": "react",
+    "experimentalDecorators": true,
+    "noImplicitThis": true,
+    "noImplicitReturns": true,
+    "alwaysStrict": true,
+    "inlineSourceMap": true,
+    "inlineSources": true,
+    "noFallthroughCasesInSwitch": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "strict": true,
+    "removeComments": true,
+    "pretty": true,
+    "strictPropertyInitialization": true,
+    "esModuleInterop": true,
+    "lib": ["ESNext", "DOM", "WebWorker"],
+    "paths": {
+      "src/*": ["./src/*"],
+      "wasm/*": ["./wasm/*"]
+    },
+    "resolveJsonModule": true
+  },
+  "include": [
+    "src",
+    "types"
+  ],
+  "exclude": [
+    "node_modules"
+  ]
+}
