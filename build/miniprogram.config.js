@@ -25,7 +25,7 @@ module.exports = {
         app: "noemit"
     },
     app: {
-        navigationBarTitleText: 'miniprogram-project',
+        navigationBarTitleText: 'gitcmd',
     },
 	appExtraConfig: {
         sitemapLocation: 'sitemap.json',

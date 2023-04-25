@@ -31,6 +31,7 @@ module.exports = {
     extensions: ['...', ".tsx", ".ts", '.js', '.jsx', '.json'],
     alias: {
       src: path.resolve(__dirname, "../src/"),
+      api: path.resolve(__dirname, "../src/api"),
       wasm: path.resolve(__dirname, "../wasm/"  + (Reflect.has(process.env, "WECHAT") ? "mp" : "web" ))
     },
     fallback: {

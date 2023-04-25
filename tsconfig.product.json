@@ -23,7 +23,8 @@
     "lib": ["ESNext", "DOM", "WebWorker"],
     "paths": {
       "src/*": ["./src/*"],
-      "wasm/*": ["./wasm/*"]
+      "wasm/*": ["./wasm/*"],
+      "api/*": ["./src/api/*"]
     },
     "resolveJsonModule": true
   },
