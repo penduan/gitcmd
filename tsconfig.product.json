@@ -24,7 +24,8 @@
     "paths": {
       "src/*": ["./src/*"],
       "wasm/*": ["./wasm/*"],
-      "api/*": ["./src/api/*"]
+      "api/*": ["./src/api/*"],
+      "wts/*": ["./src/wts/*"]
     },
     "resolveJsonModule": true
   },

@@ -2,13 +2,13 @@
 module.exports = {
   mp: {
     copy: [
-      {from: "./miniprogram", to: "."}
+      {from: "./wasm/mp/lg2.wasm.br", to: "../assets"}
     ]
   },
   web: {
     page: [],
     copy: [
-      {from: "./miniprogram", to: "."}
+      {from: "./wasm/web/lg2.wasm", to: "./"}
     ]
   }
 }

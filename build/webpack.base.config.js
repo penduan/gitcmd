@@ -32,7 +32,8 @@ module.exports = {
     alias: {
       src: path.resolve(__dirname, "../src/"),
       api: path.resolve(__dirname, "../src/api"),
-      wasm: path.resolve(__dirname, "../wasm/"  + (Reflect.has(process.env, "WECHAT") ? "mp" : "web" ))
+      wasm: path.resolve(__dirname, "../wasm/"  + (Reflect.has(process.env, "WECHAT") ? "mp" : "web" )),
+      wts: path.resolve(__dirname, "../src/wts"),
     },
     fallback: {
       path: false,
