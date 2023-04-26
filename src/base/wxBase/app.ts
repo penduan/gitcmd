@@ -1,9 +1,4 @@
-import { BaseClass, InstanceBaseEvent, InstanceType } from "../base";
-
-type AppEventType = "onLaunch" 
-  | "onShow" 
-  | "onHide" 
-  | "onError"
+import { BaseClass, InstanceBaseEvent, InstanceType, AppEventType } from "../base";
 
 class AppBase extends BaseClass<AppEventType> {
   constructor() {

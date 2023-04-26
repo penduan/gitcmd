@@ -17,6 +17,12 @@ export const InstanceName: Record<InstanceType, string> = {
   [InstanceType.Behavior]: "Behavior"
 }
 
+export type AppEventType = "onLaunch" 
+  | "onShow" 
+  | "onHide" 
+  | "onError"
+
+
 export const enum InstanceBaseEvent {
   Lifecycle,
   Common
