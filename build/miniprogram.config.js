@@ -21,14 +21,17 @@ module.exports = {
         accessDenied: 'home',
     },
     generate: {
-        autoBuildNpm: 'npm',
-        app: "noemit"
+        autoBuildNpm: 'npm'
     },
     app: {
         navigationBarTitleText: 'gitcmd',
     },
 	appExtraConfig: {
         sitemapLocation: 'sitemap.json',
+        useExtendedLib: {
+            kbone: true,
+            weui: true
+        }
 	},
     global: {},
     pages: {},
