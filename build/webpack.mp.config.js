@@ -1,7 +1,7 @@
 const path = require('path')
 const webpack = require('webpack')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
-const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin')
+const CssMiniPlugin = require("css-minimizer-webpack-plugin")
 const TerserPlugin = require('terser-webpack-plugin')
 const MpPlugin = require('mp-webpack-plugin')
 const CopyPlugin = require("copy-webpack-plugin")
@@ -52,10 +52,9 @@ module.exports = {
     minimizer: isOptimize
       ? [
           // 压缩CSS
-          new OptimizeCSSAssetsPlugin({
-            assetNameRegExp: /\.(css|wxss)$/g,
-            cssProcessor: require('cssnano'),
-            cssProcessorPluginOptions: {
+          new CssMiniPlugin({
+            test: /\.(css|wxss)$/g,
+            minimizerOptions: {
               preset: [
                 'default',
                 {
@@ -66,7 +65,6 @@ module.exports = {
                 },
               ],
             },
-            canPrint: false,
           }),
           // 压缩 js
           new TerserPlugin({

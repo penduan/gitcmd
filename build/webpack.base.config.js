@@ -41,6 +41,9 @@ module.exports = {
       ws: false,
       fs: false,
       crypto: false,
+      http: false,
+      https: false,
+      worker_threads: false
     }
   },
 }

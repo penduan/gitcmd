@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "mocha",
+    "test": "env TS_NODE_PROJECT=./test/tsconfig.test.json mocha --require ts-node/register --require tsconfig-paths/register --extension ts --recursive './test/**/*.ts'",
     "start": "npm run mp",
     "web": "cross-env NODE_ENV=development webpack-dev-server --progress --config build/webpack.dev.config.js",
     "mp": "rimraf dist/mp/common && cross-env NODE_ENV=development webpack --config build/webpack.mp.config.js --watch --progress",
@@ -44,6 +44,8 @@
     "copy-webpack-plugin": "^11.0.0",
     "cross-env": "^7.0.3",
     "css-loader": "^6.7.3",
+    "css-minimizer-webpack-plugin": "^5.0.0",
+    "cssnano": "^6.0.0",
     "file-loader": "^6.2.0",
     "gulp": "^4.0.2",
     "gulp-cli": "^2.3.0",

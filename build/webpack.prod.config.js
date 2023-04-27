@@ -4,8 +4,10 @@ const { merge } = require('webpack-merge')
 const baseWebpackConfig = require('./webpack.base.config')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
-const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin')
+const CssMiniPlugin = require('css-minimizer-webpack-plugin')
 const TerserPlugin = require('terser-webpack-plugin')
+const CopyPlugin = require("copy-webpack-plugin")
+const config = require("./config")
 
 const htmlPluginList = Object.keys(baseWebpackConfig.entry).map(name => {
   return new HtmlWebpackPlugin({
@@ -38,7 +40,7 @@ const webpackConfig = merge(baseWebpackConfig, {
       maxAsyncRequests: 5,
       maxInitialRequests: 3,
       automaticNameDelimiter: '~',
-      name: true,
+      name: false,
       cacheGroups: {
         vendors: {
           test: /[\\/]node_modules[\\/]/,
@@ -53,10 +55,9 @@ const webpackConfig = merge(baseWebpackConfig, {
     },
     minimizer: [
       // 压缩CSS
-      new OptimizeCSSAssetsPlugin({
-        assetNameRegExp: /\.css$/g,
-        cssProcessor: require('cssnano'),
-        cssProcessorPluginOptions: {
+      new CssMiniPlugin({
+        test: /\.css$/g,
+        minimizerOptions: {
           preset: [
             'default',
             {
@@ -65,8 +66,7 @@ const webpackConfig = merge(baseWebpackConfig, {
               },
             },
           ],
-        },
-        canPrint: false,
+        }
       }),
       // 压缩 js
       new TerserPlugin({
