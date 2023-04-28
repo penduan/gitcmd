@@ -28,7 +28,7 @@ export class Lg2 extends EventEmitter<LG2Event> {
 
 
     /** callMain end. */
-    this._addModuleEvent("onGitProcessEnd", LG2Event.git_processor_end);
+    this._addModuleEvent("onGitProcessorEnd", LG2Event.git_processor_end);
 
     /** blame command */
     this._addModuleEvent("onBlame", LG2Event.blame);
