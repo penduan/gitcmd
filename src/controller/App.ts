@@ -1,6 +1,6 @@
 import { AppBaseClass } from "src/base";
-
-import { platform, isWeb, isExt } from "api/common/env";
+import { Deps } from "src/api/common/deps";
+import { GitController } from "./Git";
 
 declare global {
   module globalThis {
@@ -15,11 +15,21 @@ export default class AppClass extends AppBaseClass {
   
   isWeChat = !!process.env.WECHAT;
 
+  deps: Deps;
+  git: GitController;
+
   constructor() {
     super();
+
+    this.deps = new Deps();
+    this.action.loading("loading");
+    this.git = new GitController(this.deps);
+
+    this.deps.awaitDeps().then(() => {
+      this.action.hide();
+    })
+
   }
-
-
 }
 
 export function getAppInstance() {
