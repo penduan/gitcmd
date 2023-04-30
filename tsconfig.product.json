@@ -25,7 +25,8 @@
       "src/*": ["./src/*"],
       "wasm/*": ["./wasm/*"],
       "api/*": ["./src/api/*"],
-      "wts/*": ["./src/wts/*"]
+      "wts/*": ["./src/wts/*"],
+      "css/*": ["./src/assets/css/*"]
     },
     "resolveJsonModule": true
   },

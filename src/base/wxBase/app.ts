@@ -1,13 +1,14 @@
 import { BaseClass, InstanceBaseEvent, InstanceType, AppEventType } from "../base";
+import { IApp } from "../interfaces";
 
-class AppBase extends BaseClass<AppEventType> {
+export class AppBaseClass extends BaseClass<AppEventType> implements IApp {
   constructor() {
     super(InstanceType.App);
   }
 
   onLaunch = (() => {
     const self = this;
-    return function (this: AppBase, options: WechatMiniprogram.LaunchOptionsApp) {
+    return function (this: AppBaseClass, options: WechatMiniprogram.LaunchOptionsApp) {
       self.instance = this as any;
       self.emit(InstanceBaseEvent.Lifecycle, "onLaunch", options);
     }
@@ -15,14 +16,14 @@ class AppBase extends BaseClass<AppEventType> {
 
   onShow = (() => {
     const self = this;
-    return function (this: AppBase, options: WechatMiniprogram.LaunchOptionsApp) {
+    return function (this: AppBaseClass, options: WechatMiniprogram.LaunchOptionsApp) {
       self.emit(InstanceBaseEvent.Lifecycle, "onShow", options);
     }
   })();
 
   onHide = (() => {
     const self = this;
-    return function (this: AppBase) {
+    return function (this: AppBaseClass) {
       self.emit(InstanceBaseEvent.Lifecycle, "onHide");
     }
   })();
@@ -30,15 +31,13 @@ class AppBase extends BaseClass<AppEventType> {
   onError = (() => {
     const self = this;
 
-    return function(this: AppBase, error: string) {
+    return function(this: AppBaseClass, error: string) {
       self.emit(InstanceBaseEvent.Lifecycle, "onError", error);
     }
   })();
-}
 
-interface IApp {
-  new (): AppBase & WechatMiniprogram.App.Option;
-  prototype: AppBase;
+  action = {
+    loading: (title: string) => wx.showLoading({title}),
+    hide: wx.hideLoading
+  }
 }
-
-export const AppBaseClass = AppBase as any as IApp;

@@ -34,6 +34,7 @@ module.exports = {
       api: path.resolve(__dirname, "../src/api"),
       wasm: path.resolve(__dirname, "../wasm/"  + (Reflect.has(process.env, "WECHAT") ? "mp" : "web" )),
       wts: path.resolve(__dirname, "../src/wts"),
+      css: path.resolve(__dirname, "../src/assets/css"),
     },
     fallback: {
       path: false,
