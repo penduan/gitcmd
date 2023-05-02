@@ -7,9 +7,9 @@
     "test": "env TS_NODE_PROJECT=./test/tsconfig.test.json mocha --require ts-node/register --require tsconfig-paths/register --extension ts --recursive './test/**/*.ts'",
     "start": "npm run mp",
     "web": "cross-env NODE_ENV=development webpack-dev-server --progress --config build/webpack.web.config.ts",
-    "mp": "rimraf dist/mp/common && cross-env NODE_ENV=development webpack --config build/webpack.mp.config.ts --watch --progress",
+    "mp": "rimraf dist/mp/common && cross-env NODE_ENV=development WECHAT=true webpack --config build/webpack.mp.config.ts --watch --progress",
     "build": "rimraf dist/web && webpack --config build/webpack.web.config.ts --progress",
-    "build:mp": "rimraf dist/mp/common && webpack --config build/webpack.mp.config.ts --progress",
+    "build:mp": "rimraf dist/mp/common && cross-env WECHAT=true webpack --config build/webpack.mp.config.ts --progress",
     "build:wxs": "rimraf ./dist/mp/wxs && mkdir ./dist/mp/wxs && npx gulp"
   },
   "repository": {

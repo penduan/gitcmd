@@ -30,7 +30,9 @@
     },
     "resolveJsonModule": true,
     "types": [
-      "./types/index.d.ts"
+      "./types/index.d.ts",
+      "wechat-miniprogram",
+      "nodes"
     ]
   },
   "include": [

@@ -9,8 +9,18 @@ function Counter() {
       <span>{count}</span>
       <button onClick={() => setCount(count + 1)}>+</button>
       <div onClick={clickHandle}>跳转</div>
+      <div onClick={goToMain}>跳转到main页面</div>
     </div>
   )
+}
+
+function goToMain() {
+  console.log(process.env.WECHAT);
+  if (process.env.WECHAT) {
+    wx.navigateTo({url: "../main/index"})
+  } else {
+    location.href = "main.html"
+  }
 }
 
 function clickHandle() {

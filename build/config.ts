@@ -5,7 +5,7 @@ export const getAbsPath = (targetPath: string) => path.resolve(__dirname, "../",
 const IS_DEV = process.env.NODE_ENV == "development";
 const IS_WECHAT = Reflect.has(process.env, "WECHAT");
 
-const APPID = "";
+const APPID = "wxdb2685dfafef3719";
 const PROJECT_NAME = require("../package.json").name;
 const ORIGIN = "https://gitcmd.pinquapp.com";
 const AUTO_BUILD_NPM = 'npm';
@@ -54,7 +54,8 @@ const WEB_DEFINE_CONFIG = {
  */
 const COMMON_ENTRIES = {
   index: "src/pages/index.tsx",
-  log: "src/pages/log.tsx"
+  log: "src/pages/log.tsx",
+  main: 'src/pages/main.tsx',
 }
 const MP_ENTRIES = {
   ...COMMON_ENTRIES,
@@ -85,13 +86,36 @@ const MP_PLUGIN_CONFIG = {
     notFound: 'home',
     accessDenied: 'home',
   },
-  generate: { autoBuildNpm: AUTO_BUILD_NPM },
+  generate: { 
+    autoBuildNpm: AUTO_BUILD_NPM,
+    wxCustomComponent: {
+      root: getAbsPath("./src/components/custom-components"),
+      usingComponents: {
+        'comp-a': {
+          path: 'comp-a',
+          props: ['prefix', 'suffix', 'testObj', 'testArr', 'testDefaultVal'],
+          propsVal: ['', '', {}, [], 'hello kbone'],
+          events: ['someevent']
+        },
+        'comp-b': {
+          path: 'comp-b/index',
+          props: ['prefix', 'name']
+        },
+        'comp-c': 'comp-c',
+        'comp-e': {
+          path: 'comp-e/index',
+          props: ['my-class'],
+          externalWxss: ['main']
+        }
+      }
+    }
+  },
   app: {
     navigationBarTitleText: PROJECT_NAME,
   },
   appExtraConfig: {
     sitemapLocation: 'sitemap.json',
-    useExtendedLib: { kbone: true, weui: true }
+    useExtendedLib: { weui: true }
   },
   global: {},
   pages: {},
@@ -156,7 +180,7 @@ export default {
       path: MP_OUTPUT_PATH,
       // 放到小程序代码目录中的 common 目录下
       filename: '[name].js', // 必需字段，不能修改
-      library: 'createPage', // 必需字段，不能修改
+      library: 'createApp', // 必需字段，不能修改
       libraryExport: 'default', // 必需字段，不能修改
       libraryTarget: 'window', // 必需字段，不能修改
     },
