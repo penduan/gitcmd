@@ -28,12 +28,16 @@
       "wts/*": ["./src/wts/*"],
       "css/*": ["./src/assets/css/*"]
     },
-    "resolveJsonModule": true
+    "resolveJsonModule": true,
+    "types": [
+      "./types/index.d.ts"
+    ]
   },
   "include": [
     "src",
     "types",
-    "test"
+    "test",
+    "build"
   ],
   "exclude": [
     "node_modules"

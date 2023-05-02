@@ -6,10 +6,10 @@
   "scripts": {
     "test": "env TS_NODE_PROJECT=./test/tsconfig.test.json mocha --require ts-node/register --require tsconfig-paths/register --extension ts --recursive './test/**/*.ts'",
     "start": "npm run mp",
-    "web": "cross-env NODE_ENV=development webpack-dev-server --progress --config build/webpack.dev.config.js",
-    "mp": "rimraf dist/mp/common && cross-env NODE_ENV=development webpack --config build/webpack.mp.config.js --watch --progress",
-    "build": "rimraf dist/web && cross-env NODE_ENV=production webpack --config build/webpack.prod.config.js --progress",
-    "build:mp": "rimraf dist/mp/common && cross-env NODE_ENV=production webpack --config build/webpack.mp.config.js --progress",
+    "web": "cross-env NODE_ENV=development webpack-dev-server --progress --config build/webpack.web.config.ts",
+    "mp": "rimraf dist/mp/common && cross-env NODE_ENV=development webpack --config build/webpack.mp.config.ts --watch --progress",
+    "build": "rimraf dist/web && webpack --config build/webpack.web.config.ts --progress",
+    "build:mp": "rimraf dist/mp/common && webpack --config build/webpack.mp.config.ts --progress",
     "build:wxs": "rimraf ./dist/mp/wxs && mkdir ./dist/mp/wxs && npx gulp"
   },
   "repository": {
@@ -33,6 +33,7 @@
     "@babel/preset-env": "^7.21.4",
     "@babel/preset-react": "^7.18.6",
     "@babel/preset-typescript": "^7.21.4",
+    "@types/chrome": "^0.0.234",
     "@types/gulp": "^4.0.10",
     "@types/mocha": "^10.0.1",
     "@types/node": "^18.16.0",
@@ -58,6 +59,7 @@
     "rimraf": "^5.0.0",
     "style-loader": "^3.3.2",
     "stylehacks": "^6.0.0",
+    "terser-webpack-plugin": "^5.3.7",
     "ts-node": "^10.9.1",
     "tsconfig-paths": "^4.2.0",
     "typescript": "^5.0.4",
@@ -68,6 +70,7 @@
   },
   "dependencies": {
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react-dom": "^18.2.0",
+    "weui.js": "^1.2.18"
   }
 }
