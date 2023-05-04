@@ -62,6 +62,7 @@ const MP_ENTRIES = {
 }
 const WEB_ENTRIES = {
   ...COMMON_ENTRIES,
+  lit: "src/components/lit/index.ts"
 }
 
 /**
@@ -198,7 +199,7 @@ export default {
       }
       : {
         path: WEB_OUTPUT_PATH,
-        filename: path.posix.join('static', 'js/[name].[chunkhash].js'),
+        filename: path.posix.join('static', 'js/[name].js'),
         chunkFilename: path.posix.join('static', 'js/[id].[chunkhash].js')
       },
     defines: WEB_DEFINE_CONFIG

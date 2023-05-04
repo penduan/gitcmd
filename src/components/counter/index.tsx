@@ -5,9 +5,12 @@ function Counter() {
   const [count, setCount] = useState(0)
   return (
     <div>
-      <button onClick={() => setCount(count - 1)}>-</button>
-      <span>{count}</span>
-      <button onClick={() => setCount(count + 1)}>+</button>
+      <div className="weui-flex">
+        <button onClick={() => setCount(count - 1)}>-</button>
+        <span style={{backgroundColor: "var(--weui-FG-1)",color:"var(--weui-BG-1)"}}>{count}</span>
+        <button onClick={() => setCount(count + 1)}>+</button>
+      </div>
+      
       <div onClick={clickHandle}>跳转</div>
       <div onClick={goToMain}>跳转到main页面</div>
     </div>

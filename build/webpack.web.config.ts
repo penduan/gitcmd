@@ -11,19 +11,21 @@ import path from 'path';
 
 const LOCALHOST_PORT = +(process.env.PORT || "") || 8080;
 
-const htmlPluginList = config.isDev 
-  ? Object.keys(config.web.entry).map(name => {
+let filterEntries = Object.keys(config.web.entry).filter(name => name != 'lit');
+console.log(filterEntries);
+let htmlPluginList = config.isDev 
+  ? filterEntries.map(name => {
     return new HtmlWebpackPlugin({
       filename: `${name}.html`,
-      template: 'index.html',
+      template: 'index.dev.html',
       inject: true,
       chunks: [name],
     })
   }) 
-  : Object.keys(config.web.entry).map(name => {
+  : filterEntries.map(name => {
     return new HtmlWebpackPlugin({
       filename: getAbsPath(`./dist/web/${name}.html`),
-      template: 'index.html',
+      template: 'index.prod.html',
       inject: true,
       minify: {
         removeComments: true,

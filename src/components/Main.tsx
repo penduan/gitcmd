@@ -16,11 +16,12 @@ declare  global {
 const App = (props: any, store: any) => {
   const [suffixA] = useState('suffix-a')
   const [prefixA, setPrefixA] = useState('')
-  const [prefixB, setPrefixB] = useState('prefix-b')
-  const [compAData, setCompAData] = useState(JSON.stringify({
+  const [prefixB, setPrefixB] = useState('prefix-b');
+  let compADataObj = {
     testObj: {a: 'bye', b: 'june'},
     testArr: [1, 2, 3],
-  }))
+  }
+  const [compAData, setCompAData] = useState(JSON.stringify(compADataObj))
 
   const compARef = useRef(null) as any;
 
@@ -40,12 +41,15 @@ const App = (props: any, store: any) => {
   function doUpdate() {
     setPrefixA('prefix-new-a')
     setPrefixB('prefix-new-b')
-    setCompAData(JSON.stringify({
+    compADataObj = {
       testObj: {a: 'hello', b: 'kbone'},
       testArr: [1, 2, 3, 4, 5, 6, 7],
-    }))
+    }
+    setCompAData(JSON.stringify(compADataObj))
 
-    compARef.current._wxCustomComponent.printf()
+    if (process.env.WECHAT) {
+      compARef.current._wxCustomComponent.printf()
+    }
   }
 
   function goOther() {
@@ -55,9 +59,16 @@ const App = (props: any, store: any) => {
   return (
     <div className="cnt">
       <h2>kbone</h2>
-      <comp-a ref={compARef} className="block" prefix={prefixA} suffix={suffixA} kbone-attribute-map={compAData}>
-        <div>comp-a slot</div>
-      </comp-a>
+      {process.env.WECHAT ? 
+        (<comp-a ref={compARef} className="block" prefix={prefixA} suffix={suffixA} kbone-attribute-map={compAData}>
+          <div>comp-a slot</div>
+        </comp-a>)
+      :
+        (<comp-a ref={compARef} className="block" prefix={prefixA} suffix={suffixA} testObj={JSON.stringify(compADataObj.testObj)} testArr={JSON.stringify(compADataObj.testArr)}>
+          <div>comp-a slot</div>
+        </comp-a>)
+      }
+      
       <comp-b className="block" prefix={prefixB} name="test" my-class="external-red">
         <div>comp-b slot</div>
       </comp-b>
